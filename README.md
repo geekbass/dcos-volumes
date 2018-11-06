@@ -1,3 +1,19 @@
+AWS DC/OS Additional EBS Volumes and Attachments (NOTE: THIS IS CURRENTLY EXPERIMENTAL AND NOT YET SUPPORTED)
+===========
+This module creates additional ebs volumes and attaches them to the instances. This is based on best practices for DC/OS.
+
+EXAMPLE
+-------
+
+```hcl
+module "agent_volumes" {
+ source = "/Users/westonbassler/Documents/git-repos/dcos-volumes"
+ num                     = "${var.agent_instance_count}"
+ instance_id             = "${module.agent.instances}"
+ availability_zone       = "${var.azs_main}"
+}
+```
+
 
 ## Inputs
 
