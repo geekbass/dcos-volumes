@@ -30,10 +30,11 @@ resource "aws_ebs_volume" "mesos" {
 }
 
 resource "aws_volume_attachment" "mesos_attach" {
-  count       = "${var.num}"
-  device_name = "/dev/xvde"
-  volume_id   = "${element(aws_ebs_volume.mesos.*.id, count.index + 0)}"
-  instance_id = "${element(var.instance_id, count.index + 0)}"
+  count        = "${var.num}"
+  device_name  = "/dev/xvde"
+  volume_id    = "${element(aws_ebs_volume.mesos.*.id, count.index + 0)}"
+  instance_id  = "${element(var.instance_id, count.index + 0)}"
+  force_detach = true
 }
 
 resource "aws_ebs_volume" "docker" {
@@ -44,10 +45,11 @@ resource "aws_ebs_volume" "docker" {
 }
 
 resource "aws_volume_attachment" "docker_attach" {
-  count       = "${var.num}"
-  device_name = "/dev/xvdf"
-  volume_id   = "${element(aws_ebs_volume.docker.*.id, count.index + 0)}"
-  instance_id = "${element(var.instance_id, count.index + 0)}"
+  count        = "${var.num}"
+  device_name  = "/dev/xvdf"
+  volume_id    = "${element(aws_ebs_volume.docker.*.id, count.index + 0)}"
+  instance_id  = "${element(var.instance_id, count.index + 0)}"
+  force_detach = true
 }
 
 resource "aws_ebs_volume" "volume0" {
@@ -58,10 +60,11 @@ resource "aws_ebs_volume" "volume0" {
 }
 
 resource "aws_volume_attachment" "volume0_attach" {
-  count       = "${var.num}"
-  device_name = "/dev/xvdg"
-  volume_id   = "${element(aws_ebs_volume.volume0.*.id, count.index + 0)}"
-  instance_id = "${element(var.instance_id, count.index + 0)}"
+  count        = "${var.num}"
+  device_name  = "/dev/xvdg"
+  volume_id    = "${element(aws_ebs_volume.volume0.*.id, count.index + 0)}"
+  instance_id  = "${element(var.instance_id, count.index + 0)}"
+  force_detach = true
 }
 
 resource "aws_ebs_volume" "log" {
@@ -72,8 +75,9 @@ resource "aws_ebs_volume" "log" {
 }
 
 resource "aws_volume_attachment" "log_attach" {
-  count       = "${var.num}"
-  device_name = "/dev/xvdh"
-  volume_id   = "${element(aws_ebs_volume.log.*.id, count.index + 0)}"
-  instance_id = "${element(var.instance_id, count.index + 0)}"
+  count        = "${var.num}"
+  device_name  = "/dev/xvdh"
+  volume_id    = "${element(aws_ebs_volume.log.*.id, count.index + 0)}"
+  instance_id  = "${element(var.instance_id, count.index + 0)}"
+  force_detach = true
 }
