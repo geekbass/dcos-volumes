@@ -7,10 +7,14 @@ EXAMPLE
 
 ```hcl
 module "agent_volumes" {
- source = "/Users/westonbassler/Documents/git-repos/dcos-volumes"
- num                     = "${var.agent_instance_count}"
- instance_id             = "${module.agent.instances}"
- availability_zone       = "${var.azs_main}"
+ source = "dcos-terraform/aws/volumes-dcos"
+ num                     = "3"
+ instance_id             = ["id-ablsldhfa123", "id-blahblah1234", "id-abncsss43112"]
+ availability_zone       = ["us-east-1a", "us-east-1b", "us-east-1c"]
+ mesos_size              = "500"
+ docker_size             = "250"
+ log_size                = "800"
+ disk_type               = "gp2"
 }
 ```
 
